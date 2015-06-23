@@ -1,4 +1,5 @@
 import keras, urllib2 
+import numpy as np
 
 # download data from http://mesonet.agron.iastate.edu/request/download.phtml?network=IL_ASOS
 data  = urllib2.urlopen('http://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=MSP&data=tmpf&year1=2011&month1=1&day1=1&year2=2015&month2=6&day2=22&tz=Etc%2FUTC&format=tdf&latlon=no&direct=no').read()
