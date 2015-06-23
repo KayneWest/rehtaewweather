@@ -6,6 +6,7 @@ data  = urllib2.urlopen('http://mesonet.agron.iastate.edu/cgi-bin/request/asos.p
 
 # split data into viable format
 data = [x.split('\t') for x in data.split('\n')]
+data = data[6:]
 
 # the third row is the temp, put it into another list
 # only ~2 NaNs. too few to really matter with this
