@@ -63,7 +63,7 @@ model.add(Activation('tanh'))
 model.add(Dropout(0.5))
 model.add(Dense(100, 1))
 model.compile(loss='mean_absolute_error', optimizer='rmsprop')
-model.fit(Xtrain, ytrain, batch_size=250, nb_epoch=5, validation_split=0.1, show_accuracy=True)
+model.fit(Xtrain, ytrain, batch_size=250)
 score = model.evaluate(Xtest, Ytest, batch_size=100)
 pred = model.predict_proba(Xtest)
 
