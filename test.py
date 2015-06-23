@@ -1,12 +1,20 @@
 import keras, urllib2 
 import numpy as np
+from keras.preprocessing import sequence
+from keras.optimizers import SGD, RMSprop, Adagrad
+from keras.utils import np_utils
+from keras.models import Sequential
+from keras.layers.core import Dense, Dropout, Activation
+from keras.layers.embeddings import Embedding
+from keras.layers.recurrent import LSTM, GRU
+
+
 
 # download data from http://mesonet.agron.iastate.edu/request/download.phtml?network=IL_ASOS
 data  = urllib2.urlopen('http://mesonet.agron.iastate.edu/cgi-bin/request/asos.py?station=MSP&data=tmpf&year1=2011&month1=1&day1=1&year2=2015&month2=6&day2=22&tz=Etc%2FUTC&format=tdf&latlon=no&direct=no').read()
 
 # split data into viable format
 data = [x.split('\t') for x in data.split('\n')]
-data = data[6:]
 
 # the third row is the temp, put it into another list
 # only ~2 NaNs. too few to really matter with this
@@ -18,6 +26,7 @@ for x in data:
     except:    
         pass
 
+data2 = data2[6:]
 # change to float32 in case we have a GPU
 data2 = [np.float32(x) for x in data2 if x!='M']
 
